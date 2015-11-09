@@ -1,8 +1,31 @@
 import math
 
 class OccupancyOctoMap:
+    """
+    OctoMap to store 3D probabilistic occupancy information.  Based on
+    "OctoMap: An Efficien Probabilistic 3D Mapping Framwork Based on Octrees" by
+    A. Hornung, K. M. Wurm, M. Bennewitz, C. Stachniss and W. Burgard.
+    (http://octomap.github.io).
+
+    This python implementation is meant as an experiment for use in small demo
+    applications.
+    """
 
     def __init__(self, center, resolution, max_depth, prior_prob = 0.5 ):
+        """
+        Create a new OccupancyOctoMap.
+
+        The map will be centered around the `center` position specified by the
+        user and will have a width of `resolution` times 2 to the power of `max_depth`
+
+        Args:
+            center: center of the map -- (x,y,z) tuple
+            resolution: maximal resolution
+            max_depth: maximum depth
+            prior_prob: prior occupancy probability
+
+        Returns: a new map
+        """
         self._center = center
         self._resolution = resolution
         self._max_depth = max_depth
@@ -150,7 +173,6 @@ class OccupancyOctoNode:
     def update(self, point, probability, origin, width, max_depth):
         """
         Updates the node with a new observation.
-
 
         Args:
             point: the point of the observation
